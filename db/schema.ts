@@ -1,7 +1,7 @@
 import { pgTable, integer, timestamp, serial, text, uuid } from 'drizzle-orm/pg-core'
 
 // Users table (handles both email and OAuth users)
-export const user = pgTable( 'users', {
+export const user = pgTable( 'user', {
     id: uuid("id").defaultRandom().primaryKey(),
     email: text("email").notNull().unique(),
     hashed_password: text("password"), // Nullable for OAuth users
@@ -10,7 +10,7 @@ export const user = pgTable( 'users', {
 })
 
 // Players table linked to users
-export const players = pgTable('players', {
+export const player = pgTable('player', {
     id: serial("id").primaryKey(),
     user_id: uuid("user_id").notNull().references(() => user.id, { onDelete: 'cascade'}),
     name: text("name").notNull(),
@@ -19,6 +19,5 @@ export const players = pgTable('players', {
     height: text("height").notNull(),
     weight: integer("weight").notNull(),
     handedness: text("handedness").notNull(), // Left, Right, Switch
-    team_name: text("team"), // Optional
     created_at: timestamp("created_at").defaultNow()
 })
