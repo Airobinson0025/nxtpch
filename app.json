@@ -36,10 +36,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "expoPublicSupabaseUrl": "https://your-project.supabase.co",
-      "expoPublicSupabaseAnonKey": "your-anon-key"
     }
   }
 }
